@@ -1,0 +1,75 @@
+<section>
+    <div class="container" style="padding-left:150px;">
+
+        {{!-- <div class="d-flex align-items-center mb-4">
+            <div class="text-decor">Sales report</div>
+            <form
+                class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 ms-4 mt-2 align-items-center">
+                <input class="form-control form-control-sm mr-3 w-100" type="text" placeholder="Search"
+                    aria-label="Search">
+                <a href=""><i class="fas fa-search ms-2" aria-hidden="true"></i></a>
+            </form>
+        </div> --}}
+
+        <div>
+
+
+            <div class="d-flex ">
+                <form action="/admin/sales-report" method="get">
+                    <label for="month">Choose Month</label><br>
+                    <input id="month" name="month" type="month">
+                    <button style="" class="btn btn-info" type="submit">Filter</button>
+                </form>
+                <form action="/admin/sales-report" method="get" class="ms-5">
+                    <label for="daterange">Choose Date</label><br>
+                    <input type="text" name="daterange" value="01/08/2022 - 12/08/2022" />
+                    <button style="height: 35px; width: 120px;" class="btn btn-info" type="submit">Filter Date</button>
+                </form>
+            </div>
+
+            <div class="text-end">
+                <input type="button" id="rep" value="Download as Pdf" class="btn btn-info btn_print">
+                <input type="button" onclick="export_data()" value="Export to excel" class="btn btn-info btn_print">
+            </div>
+
+        </div>
+
+        <hr class="mt-1">
+
+        <div class="container_content" id="container_content">
+            <div class="invoice-box">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Order Amount</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Delivered Date</th>
+                            <th scope="col" style="width:100px ;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        {{#each this.deliveredOrders}}
+                        <tr>
+                            <td scope="col"><strong>{{{inc @index}}}</strong></td>
+                            <td scope="col">{{this._id}}</td>
+                            <td scope="col">{{this.OfferPrice}}</td>
+                            <td scope="col">{{this.paymentMethod}}</td>
+                            <td scope="col">{{this.date}}</td>
+                            <td>{{this.status}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>

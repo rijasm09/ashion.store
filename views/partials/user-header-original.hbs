@@ -1,0 +1,250 @@
+
+
+
+{{!-- iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii --}}
+
+<section>
+    <div class="container" style="margin-left:120px ">
+        {{!-- <div class="title mb-5">
+            <p>Hai, &#128075; {{user.username}}</p>
+        </div> --}}
+        <div class="d-flex align-items-center" style="margin-top: 1rem;">
+            <div class="text-decor">Order History</div>
+            {{!-- <form
+                class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 ms-4 mt-2 align-items-center">
+                <input class="form-control form-control-sm mr-3 w-100" type="text" placeholder="Search User"
+                    name="searchUser" aria-label="Search">
+                <a href=""><i class="fas fa-search ms-2" aria-hidden="true"></i></a>
+            </form> --}}
+        </div>
+
+        {{#each orders}}
+        <div class="card mb-4">
+            <h5 class="card-header" style="background-color:grey; color:white; font-size: 15px;">{{this.date}}
+            </h5>
+            <div class="d-flex card-font-size">
+                <img class="img-fluid ms-2 my-2" src="{{this.image}}" alt="Card image cap" width="120">
+                <div class="card-body ms-5 w-25">
+                    <h5 class="card-title">{{this.Name}}</h5>
+                    <p class="card-text">Quantity: {{this.quantity}}</p>
+                    <p class="card-text">Total Amount: ₹{{this.prodTotal}}</p>
+                </div>
+                <div class="card-body w-25">
+                    <p class="card-text">Name: {{this.ordername}},<br> Address: {{this.address}}
+                    </p>
+                    <p class="card-text">State:{{this.city}} ,<br>Ph No: {{this.phonenumber}}
+                    </p>
+                    <p class="card-text">Pincode: {{this.pincode}}
+                </div>
+                <div class="card-body frame">
+                    <p class="card-text">Payment Method: {{this.paymentMethod}}</p>
+                    <p class="card-text">Order Status: <span id="{{this._id}}{{this.item}}"
+                            style="color:#24B037">{{this.status}}</span></p>
+                    <p><span id="{{inc @index}}" style="color:red"></span></p>
+
+                    {{#ifNotEqTri status 'delivered' 'canceled' 'return'}}
+
+                    <a
+                        onclick="cancelOrder('{{this._id}}','{{this.item}}','{{this.quantity}}','{{this.prodTotal}}','{{inc @index}}')"><button
+                            style=" background: rgb(255,27,0);" type="button" class="custom-btn btn-9"
+                            id="{{this.item}}{{this._id}}">Cancel
+                            Order</button></a>
+                    {{/ifNotEqTri}}
+
+                    {{#ifCheck status 'delivered' }}
+                    <a
+                        onclick="returnOrder('{{this._id}}','{{this.item}}','{{this.quantity}}','{{this.prodTotal}}','{{inc @index}}')"><button
+                            style=" background: rgb(251,33,117);" type="button" class="custom-btn btn-9"
+                            id="{{this.item}}{{this._id}}">Return Order</button></a>
+                    {{/ifCheck}}
+
+                </div>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+<style>
+    .custom-btn {
+        width: 130px;
+        height: 40px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 25px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+            7px 7px 20px 0px rgba(0, 0, 0, .1),
+            4px 4px 5px 0px rgba(0, 0, 0, .1);
+        outline: none;
+    }
+
+    .btn-9 {
+
+        width: 130px;
+        height: 40px;
+        line-height: 42px;
+        padding: 0;
+        border: none;
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+    }
+
+    .btn-9:after {
+        position: absolute;
+        content: " ";
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.3s ease;
+    }
+
+    .btn-9:hover {
+        background: transparent;
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+        color: #fff;
+    }
+
+    .btn-9:hover:after {
+        -webkit-transform: scale(2) rotate(180deg);
+        transform: scale(2) rotate(180deg);
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    }
+</style>
+
+
+{{!-- jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj --}}
+
+<div class="container pt-5">
+    {{#each orders}}
+    <div class="card mb-2">
+        <h5 class="card-header" style="background-color:grey; color:white; font-size: 15px;">{{this.displayDate}}
+        </h5>
+        <div class="d-flex card-font-size">
+            <img class="img-fluid ms-2 my-2" src="{{this.image}}" alt="Card image cap" width="120">
+            <div class="card-body ms-5 w-25">
+
+                <h5 class="card-title">{{this.Name}}</h5>
+                <p class="card-text">Quantity: {{this.quantity}}</p>
+                <p class="card-text">Amount: ₹{{this.prodTotal}}</p>
+            </div>
+            <div class="card-body w-25">
+                <p class="card-text">{{this.ordername}},{{this.address}}</p>
+                <p class="card-text">{{this.city}}</p>
+                <p class="card-text">{{this.phonenumber}}, {{this.pincode}}</p>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Payment Method: {{this.paymentMethod}}</p>
+
+                <p class="card-text">Order Status:<span id="{{this._id}}{{this.item}}" style="color:#24B037"> {{this.status}}</span></p>
+                <p><span id="{{inc @index}}" style="color:red"></span></p>
+
+                {{#ifNotEqTri status 'delivered' 'canceled' 'return'}}
+
+                <a
+                    onclick="cancelOrder('{{this._id}}','{{this.item}}','{{this.quantity}}','{{this.prodTotal}}','{{inc @index}}')"><button
+                        style=" background: rgb(255,27,0);" type="button" class="custom-btn btn-9"
+                        id="{{this.item}}{{this._id}}">Cancel
+                        Order</button></a>
+                {{/ifNotEqTri}}
+
+                {{#ifCheck status 'delivered' }}
+                <a
+                    onclick="returnOrder('{{this._id}}','{{this.item}}','{{this.quantity}}','{{this.prodTotal}}','{{inc @index}}')"><button
+                        style=" background: rgb(251,33,117);" type="button" class="custom-btn btn-9"
+                        id="{{this.item}}{{this._id}}">Return Order</button></a>
+                {{/ifCheck}}
+
+            </div>
+        </div>
+    </div>
+    <div class="card mb-5">
+        <div class="card-body">
+
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+
+
+
+<style>
+    .custom-btn {
+        width: 130px;
+        height: 40px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 25px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+            7px 7px 20px 0px rgba(0, 0, 0, .1),
+            4px 4px 5px 0px rgba(0, 0, 0, .1);
+        outline: none;
+    }
+
+    .btn-9 {
+
+        width: 130px;
+        height: 40px;
+        line-height: 42px;
+        padding: 0;
+        border: none;
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+    }
+
+    .btn-9:after {
+        position: absolute;
+        content: " ";
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.3s ease;
+    }
+
+    .btn-9:hover {
+        background: transparent;
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+        color: #fff;
+    }
+
+    .btn-9:hover:after {
+        -webkit-transform: scale(2) rotate(180deg);
+        transform: scale(2) rotate(180deg);
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    }
+</style>

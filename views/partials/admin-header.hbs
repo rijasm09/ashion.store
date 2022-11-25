@@ -1,0 +1,218 @@
+<div class="header">
+    <div class="side-nav">
+        <a href="" class="logo"><img class="navbar-brand logo-img"
+                src="https://images-platform.99static.com//pZiz_DAicT7hKU-zDvH_6AQgFFc=/423x1663:1203x2443/fit-in/590x590/99designs-contests-attachments/87/87409/attachment_87409860"></a>
+        <ul class="nav-links">
+            <li><a href="/admin/dashboard">
+                    <ion-icon name="bar-chart-outline"></ion-icon>
+                    <p class="menu-text">Dashboard</p>
+                </a></li>
+            <li><a href="/admin/view-user">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <p class="menu-text">Users</p>
+                </a></li>
+            <li><a href='/admin/view-category'>
+                    <ion-icon name="apps-outline"></ion-icon>
+                    <p class="menu-text">Category</p>
+                </a></li>
+            <li><a href="/admin/sales-report">
+                    <ion-icon name="save-outline"></ion-icon>
+                    <p class="menu-text">Sales </p>
+                </a></li>
+            <li><a href="/admin/view-products">
+                    <ion-icon name="pricetags-outline"></ion-icon>
+                    <p class="menu-text">Products</p>
+                </a></li>
+            <li><a href="/admin/orders">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <p class="menu-text">Orders</p>
+                </a></li>
+
+            <li>
+
+                <div class="btn-group dropend">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" style="color: white;"
+                        aria-expanded="false">
+                        <ion-icon name="bookmarks-outline"></ion-icon>
+                        Others
+                    </button>
+                    <ul class="dropdown-menu">
+                        <a href="/admin/offers">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <p class="menu-text" style="color:darkblue ;">Product/Category Offer</p>
+                        </a>
+                        {{!-- <a href="#">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <p class="menu-text">Referal Offer</p>
+                        </a> --}}
+                        <a href="/admin/coupons">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <p class="menu-text" style="color:darkblue ;">Coupons</p>
+                        </a>
+                        <a href="/admin/banner">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <p class="menu-text" style="color:darkblue ;">Banner</p>
+                        </a>
+                    </ul>
+                </div>
+
+            </li>
+
+
+            <li><a href="/admin/adminlogout">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <p class="menu-text">Logout</p>
+                </a></li>
+            <div class="activee"></div>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<style>
+    /* Admin Side Navbar */
+
+    @import url("https://fonts.googleapis.com/css2?family=Grandstander&display=swap");
+
+
+    .side-nav {
+        width: 250px;
+        height: 100%;
+        background: black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px 30px;
+    }
+
+    .logo {
+        display: block;
+        margin-bottom: 130px;
+        margin-left: 3rem;
+    }
+
+    .logo-img {
+        width: 100px;
+    }
+
+    .nav-links {
+        list-style: none;
+        position: relative;
+        margin-top: -7.7rem;
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 14px;
+        display: flex;
+        align-items: baseline;
+    }
+
+    .nav-links li a i {
+        font-size: 22px;
+        margin-right: 20px;
+    }
+
+    .activee {
+        background: #fff;
+        width: 100%;
+        height: 47px;
+        position: absolute;
+        left: 0;
+        top: 1.5%;
+        z-index: -1;
+        border-radius: 6px;
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+        display: none;
+        transition: top 0.5s;
+    }
+
+    .nav-links li:hover a {
+        color: #4287f5;
+        transition: 0.3s;
+    }
+
+
+
+
+    .nav-links li:hover~.activee {
+        display: block;
+    }
+
+    .nav-links li:nth-child(1):hover~.activee {
+        top: 1.5%;
+    }
+
+    .nav-links li:nth-child(2):hover~.activee {
+        top: 13.86%;
+    }
+
+    .nav-links li:nth-child(3):hover~.activee {
+        top: 25.82%;
+    }
+
+    .nav-links li:nth-child(4):hover~.activee {
+        top: 38.48%;
+    }
+
+    .nav-links li:nth-child(5):hover~.activee {
+        top: 50.64%;
+    }
+
+    .nav-links li:nth-child(6):hover~.activee {
+        top: 63.80%;
+    }
+
+    .nav-links li:nth-child(7):hover~.activee {
+        top: 76.80%;
+    }
+
+    .nav-links li:nth-child(8):hover~.activee {
+        top: 88.80%;
+    }
+
+
+
+    /* responsive logo to hide */
+    .logo-icon {
+        display: none;
+        width: 45px;
+    }
+
+
+
+    /* responsive admin side bar */
+    @media only screen and (max-width: 600px) {
+        .side-nav {
+            width: 110px;
+        }
+
+        .logo-icon {
+            display: block;
+        }
+
+        .logo-img {
+            display: none;
+        }
+
+        .nav-links li a p {
+            display: none;
+        }
+
+        .nav-links li a i {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            justify-content: center;
+        }
+    }
+</style>

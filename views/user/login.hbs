@@ -1,0 +1,47 @@
+<section class="section">
+    <div class="container1">
+        <div class="user1 signinBx1">
+            <div class="imgBx1"><img
+                    src="https://cdni.iconscout.com/illustration/premium/thumb/user-showing-user-login-page-in-website-or-application-1886527-1597938.png"
+                    alt="" /></div>
+            <div class="formBx1">
+                <form action="/login" method="POST" onsubmit='return signinValidate()'>
+                    <h2>Sign In</h2>
+                    <div class="invalid-feedback ms-5"></div>
+                    <input type="text" name="Email" placeholder="Username" id="Email" />
+
+                    <div class="invalid-feedback ms-5"></div>
+                    <input type="password" name="Password" placeholder="Password" id="Password" />
+                    <input type="submit" name="" value="Login" />
+                    <p class="signup">
+                        Don't have an account ?
+                        <a href="/signup" onclick="toggleForm();">Sign Up.</a>
+                    </p>
+                    <p class="signup">
+                        Take Me
+                        <a href="/" >Home</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+        {{!-- <div class="user signupBx1">
+            <div class="formBx1">
+                <form action="" onsubmit="return false;">
+                    <h2>Create an account</h2>
+                    <input type="text" name="" placeholder="Username" />
+                    <input type="email" name="" placeholder="Email Address" />
+                    <input type="password" name="" placeholder="Create Password" />
+                    <input type="password" name="" placeholder="Confirm Password" />
+                    <input type="submit" name="" value="Sign Up" />
+                    <p class="signup">
+                        Already have an account ?
+                        <a href="#" onclick="toggleForm();">Sign in.</a>
+                    </p>
+                </form>
+            </div>
+            <div class="imgBx"><img
+                    src="https://imgproxy.epicpxls.com/2GhAjccE9MUsDNSJw4B3Z2s-wwBp-C87q-4B1hHv57Q/rs:fill:800:600:0/g:no/aHR0cHM6Ly9pdGVt/cy5lcGljcHhscy5j/b20vdXBsb2Fkcy9w/aG90by84MDdiMDEz/OGY4NjQ2NzNlNTNm/ZTYxZGMzYjgxM2Rm/MQ.jpg"
+                    alt="" /></div>
+        </div> --}}
+    </div>
+</section>

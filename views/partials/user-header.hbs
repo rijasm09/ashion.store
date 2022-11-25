@@ -1,0 +1,180 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+
+        {{!-- wishlist and cart off canvas --}}
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li><a href="/wishlist"><span class="icon_heart_alt"></span>
+                    <div class="tip" style="background: #ff3f6c;"><span class="desktop-badge desktop-melon"
+                            id="wishlist-count" data-reactid="904" style="color: white;">{{getWishlistCount}}</span>
+                    </div>
+                </a></li>
+            <li><a href="/cart"><span class="icon_bag_alt"></span>
+                    <div class="tip" style="background: #ff3f6c;"><span class="desktop-badge desktop-melon"
+                            id="cart-count_0" data-reactid="904" style="color: white;">{{cartCount}}</span></div>
+                </a></li>
+        </ul>
+        {{!-- <div class="offcanvas__logo">
+            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+        </div> --}}
+        <div id="mobile-menu-wrap"></div>
+        {{#if user}}
+        <div class="offcanvas__auth">
+            <a href="/logout">Logout</a>
+        </div>
+        {{else}}
+        <div class="offcanvas__auth">
+            <a href="/login">Login</a>
+            <a href="/signup">Register</a>
+        </div>
+        {{/if}}
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header" style="margin-top: 0rem;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="/"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669274669/ljuxhjtiu3fkff2q6t6f.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu" style="margin-top: -2rem;">
+                        <ul>
+                            <li class="active"><a href="/">Home</a></li>
+
+                            <li><a href="#">Profile</a>
+                                <ul class="dropdown" style="color: white;">
+                                    {{#if user}}
+                                    <li>&nbsp;&nbsp;&nbsp; Hi {{user.Name}}</li>
+                                    {{else}}
+                                    {{/if}}
+                                    <li><a href="/orders">Orders</a></li>
+                                    <li><a href="/wishlist">Wishlist</a></li>
+                                    <li><a href="/account">Account</a></li>
+                                    <li><a href="/coupons">Coupons</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#">Category</a>
+                                <ul class="dropdown">
+                                    {{#each category}}
+                                    <li><a href="/search?search={{this.Name}}">{{this.Name}}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                            <li><span class="desktop-newNavLink" data-reactid="839">
+                                    <sup data-reactid="841">NEW</sup>
+
+                                </span><a href="/view-products">Shop</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        {{#if user}}
+                        <div class="header__right__auth">
+                            <a href="/logout">Logout</a>
+                        </div>
+                        {{else}}
+                        <div class="header__right__auth">
+                            <a href="/login">Login</a>
+                            <a href="/signup">Register</a>
+                        </div>
+                        {{/if}}
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+
+                            <li><a href="/wishlist"><span class="icon_heart_alt"></span>
+                                    <div class="tip" style="background: #ff3f6c;"><span
+                                            class="desktop-badge desktop-melon" id="wishlist-count_0" data-reactid="904"
+                                            style="color: white;">{{getWishlistCount}}</span>
+                                    </div>
+                                </a></li>
+
+                            <li><a href="/cart"><span class="icon_bag_alt"></span>
+                                    <div class="tip" style="background: #ff3f6c;"><span
+                                            class="desktop-badge desktop-melon" id="cart-count" data-reactid="904"
+                                            style="color: white;">{{cartCount}}</span></div>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form action="/search" method="get" class="search-model-form" style="background-color:#c2c2a3" ;>
+                <input type="search" id="search-input" placeholder="Search here....." name="search"
+                    style="color: black;">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+</body>
+
+<style>
+    .desktop-newNavLink {
+        display: inline;
+        width: 18px;
+        height: 12px;
+        margin: 0 0 34px -15px;
+        font-family: Whitney;
+        font-size: 15px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #ff3f6c;
+        content: "new";
+        margin-left: 2rem;
+
+    }
+
+    sup {
+        top: 10px;
+    }
+</style>

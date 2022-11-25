@@ -1,0 +1,170 @@
+<section>
+    {{!-- <div class="container" style="padding-left:150px;">
+        <div class="title mb-5">
+            <p>Hai, &#128075; Anandhu M S</p>
+        </div> --}}
+        {{!-- <div class="d-flex align-items-center mb-4">
+            <div class="text-decor h6">Offers</div>
+        </div> --}}
+        <div class="d-flex">
+            {{!-- table-1 --}}
+            <div class="me-3 w-100 mt-5" style="margin-left: 18rem;">
+                <button class="btn border" data-bs-toggle="modal" data-bs-target="#add-category-offer">
+                    <i class="fas fa-plus me-3"></i>
+                    Add category offer
+                </button>
+                <table class="table table-striped mt-3" id="category-offer">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>offer %</th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each category}}
+                        {{#if this.catPercentage}}
+                        <tr id="{{this._id}}">
+                            <td>{{this.Name}}</td>
+                            <td>{{this.catPercentage}}</td>
+                            {{!-- <td>{{this.expirydate}}</td> --}}
+                            <td style="font-size: 16px;">
+                                {{!-- <a class="me-3" onclick="editCategoryOffer()"><i class="fas fa-pen-square"
+                                        style="color: blue;"></i></a> --}}
+                                <a onclick="deleteCategoryOffer('{{this._id}}')"><i class="fa fa-trash"
+                                        style="color: red;"></i></a>
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            {{!-- tablel 2 --}}
+            <div class="ms-5 w-100 mt-5" style="margin-left: 18rem;">
+                <button class="btn border" data-bs-toggle="modal" data-bs-target="#add-product-offer">
+                    <i class="fas fa-plus me-3"></i>
+                    Add product offer
+                </button>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Products</th>
+                            <th>offer %</th>
+                            <th>
+                              
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each products}}
+                        {{#if this.proPercentage}}
+                        <tr id="{{this._id}}">
+                            <td>{{this.Name}}</td>
+                            <td>{{this.proPercentage}}</td>
+                            {{!-- <td>{{this.expirydate}}</td> --}}
+                            <td style="font-size: 16px;">
+                                {{!-- <a class="me-3" onclick="editCategoryOffer()"><i class="fas fa-pen-square"
+                                        style="color: blue;"></i></a> --}}
+                                <a onclick="deleteProductOffer('{{this._id}}')"><i class="fa fa-trash"
+                                        style="color: red;"></i></a>
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{!-- modal 1 --}}
+        <div class="modal fade" id="add-category-offer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="add-category-offerLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="order-md-1">
+                            <h4 class="mb-3">Category Offer</h4>
+
+                            <form class="needs-validation" method="post" id="add-category-offer-form" >
+                                <div class="form-group mb-3">
+                                    {{!-- <label for="exampleFormControlSelect1">Example select</label> --}}
+                                    <select class="form-control bg-light" id="categories" name="category">
+                                        <option selected disabled>Select category....</option>
+                                        {{#each category}}
+                                        <option value="{{this.Name}}">{{this.Name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="category-percentage"
+                                        placeholder="Enter category offer in percentage" name="catPercentage" value="" required="">
+                                    <div class="invalid-feedback"> Please enter category offer. </div>
+                                </div>
+                                {{!-- <div class="mb-3">
+                                    <label for="category-expirydate">Expiry Date</label>
+                                    <input type="date" class="form-control bg-light" id="category-expirydate"
+                                        placeholder="expirydate" name="expirydate" value="" required="">
+                                    <div class="invalid-feedback"> Please enter expirydate. </div>
+                                </div> --}}
+
+                                <hr class="mb-4">
+                                <button class="btn btn-primary btn-lg btn-block w-100" type="submit">Add
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- modal 2 --}}
+        <div class="modal fade" id="add-product-offer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="add-product-offerLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="order-md-1">
+                            <h4 class="mb-3">Product Offer</h4>
+
+                            <form class="needs-validation" method="post" id="add-product-offer-form" novalidate="">
+                                <div class="form-group mb-3">
+                                    {{!-- <label for="exampleFormControlSelect1">Example select</label> --}}
+                                    <select class="form-control bg-light" id="products" name="product">
+                                        <option selected disabled>Select product....</option>
+                                        {{#each products}}
+                                        <option value="{{this._id}}">{{this.Name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-light" id="percentage"
+                                        placeholder="Enter product offer in percentage" name="proPercentage" value="" required="">
+                                    <div class="invalid-feedback"> Please enter product offer. </div>
+                                </div>
+                                {{!-- <div class="mb-3">
+                                    <label for="expirydate">Expiry Date</label>
+                                    <input type="date" class="form-control bg-light" id="expirydate"
+                                        placeholder="expirydate" name="expirydate" value="" required="">
+                                    <div class="invalid-feedback"> Please enter expirydate. </div>
+                                </div> --}}
+
+                                <hr class="mb-4">
+                                <button class="btn btn-primary btn-lg btn-block w-100" type="submit">Add
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{!-- </div> --}}
+</section>

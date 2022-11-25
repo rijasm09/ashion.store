@@ -1,0 +1,593 @@
+<body>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                        <a href="/cart"><i class="fa fa-home"></i> Shopping cart</a>
+                        <span>Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Checkout Section Begin -->
+    {{!-- <section class="checkout spad"> --}}
+        <div class="container" style="margin-top: 2rem;">
+
+            <div class="row">
+                <div class="col-lg-12" style="display: flex;flex-wrap: wrap;">
+                    <h6 class="coupon__link"></h6>
+                    <div class="col-lg-4">
+
+                        <div class="btn" style=""><button data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" style="background:#b621fe;" type="button"
+                                class="custom-btn btn-9" id="">Add
+                                Address</button></div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="btn" style=""><button data-bs-toggle="modal"
+                                data-bs-target="#addressDisplayModal" style="background:#b621fe;" type="button"
+                                class="custom-btn btn-9" id="">Saved
+                                Address</button></div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="btn" style=""><button data-bs-toggle="modal"
+                                data-bs-target="#addCouponModal" style="background:#b621fe;" type="button"
+                                class="custom-btn btn-9" id="">Add
+                                Coupon</button></div>
+                    </div>
+                </div>
+            </div>
+
+            {{!--
+            FFFFFFFFFFFFFFFFFFOOOOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRRRMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+            --}}
+            <form class="" id="order-details-form" method="post">
+                <div class="row" style="margin-top: 2rem;">
+                    <div class="col-lg-8">
+
+
+
+                        {{!-- BILLINGGGGGGGGGGGGGG --}}
+                        <input type="hidden" name="userId" value="{{user._id}}">
+                        {{!-- <input value="" id="addressId" name="addressId" class="radio" type="hidden"> --}}
+
+                        <h5 style="font-weight:bolder;">Billing detail</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="validationCustom02" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="validationCustom02" value="" name="name">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="validationCustom03" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="validationCustom03" value="" name="address"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Address.
+                                </div>
+                            </div>
+
+                            <div class="form-outline  col-md-6">
+                                <label class="form-label" for="form3Example1cg">Phone Number</label>
+                                <input type="phonenumber" id="phoneNumber" class="form-control form-control-lg"
+                                    name="phoneNumber" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="validationCustom04" class="form-label">Country</label>
+                                <select class="form-select" id="validationCustom04" name="country" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>India</option>
+                                    <option>S.Korea</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom05" class="form-label">City</label>
+                                <select class="form-select" id="validationCustom05" name="city" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>Kochi</option>
+                                    <option>Srinagar</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom04" class="form-label">State</label>
+                                <select class="form-select" id="validationCustom06" name="state" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>Kerala</option>
+                                    <option>Kashmir</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom05" class="form-label">Pincode</label>
+                                <input type="text" class="form-control" id="validationCustom07" name="pincode" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Pincode.
+                                </div>
+                            </div>
+                            {{!-- <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div> --}}
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkout__order">
+                            <h5>Your order</h5>
+                            <div class="checkout__order__product">
+                                <ul>
+                                    <li>
+                                        <span class="top__text">Product</span>
+                                        <span class="top__text__right">Total</span>
+                                    </li>
+                                    {{#each getCartProducts}}
+                                    <li>{{this.product.Name}}<span>₹ {{this.total}}</span><br><small
+                                            class="text-muted">Quantity : {{this.quantity}}</small></li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Coupon Discount <span id="couponamount"> 0 </span><span>-
+                                            ₹&nbsp;</span><br><small id="couponName">SELECT COUPON</small></li>
+                                    <li>Total <span id="finalTotal">{{total}} </span><span>₹&nbsp; </span></li>
+                                </ul>
+                            </div>
+                            <div class="checkout__order__widget">
+
+                                <div class="form-check">
+                                    <input id="credit" name="paymentmethod" value="COD" type="radio"
+                                        class="form-check-input" checked required>
+                                    <label class="form-check-label" for="credit">Cash On Delivery</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="paypal" name="paymentmethod" type="radio" value="PAYPAL"
+                                        class="form-check-input" required>
+                                    <label class="form-check-label" for="paypal">Paypal</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="debit" name="paymentmethod" type="radio" value="RAZORPAY"
+                                        class="form-check-input" required>
+                                    <label class="form-check-label" for="debit">Razor Pay</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="wallet" name="paymentmethod" type="radio" value="WALLET"
+                                        class="form-check-input" required>
+                                    <label class="form-check-label" for="wallet">Wallet</label>
+                                </div>
+
+                            </div>
+
+                            {{!-- hidden input to get the updated total value --}}
+                            <input type="hidden" value="{{total}}" name="total" id="totalCheckOutAmount">
+                            <input type="hidden" name="coupon" id="isCoupon">
+
+                            {{#if cartCount}}
+                            <button type="submit" class="site-btn">Place oder</button>
+                            {{else}}
+                            <a href="/view-products" type="button" class="site-btn">Cart is Empty</a>
+                            {{/if}}
+
+                        </div>
+                    </div>
+                    {{!-- <button type="submit" class="site-btn">Place oder</button> --}}
+                </div>
+
+
+
+
+            </form>
+
+            {{!--
+            FFFFFFFFFFFFFFFFFFOOOOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRRRMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+            --}}
+
+            {{!-- address display modal --}}
+
+            <div class="modal fade" id="addressDisplayModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Saved Addresses</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-check">
+
+
+                                <form id="address-form" method="post">
+
+                                    {{#each userAddresses}}
+
+
+                                    <div class="card" style="width: 18rem;">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1" value="{{this.address.addId}}" class="radio"
+                                            type="radio">
+                                        <label class="form-check-label" for="flexRadioDefault1"> </label>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{this.address.name}}</h5>
+                                            <p class="card-text">{{this.address.address}}
+                                                ,{{this.address.city}},
+                                                <br> {{this.address.state}} , {{this.address.country}} ,
+                                                <br> {{this.address.pincode}},<br>Ph:
+                                                {{this.address.phoneNumber}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {{/each}}
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- modal end --}}
+
+        </div>
+        {{!--
+    </section> --}}
+    <!-- Checkout Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram"  style="margin-top: 2rem;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-1_llcvdn.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-5_oa1dfs.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-4_j1z12g.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-3_s1fk5z.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-6_ide4cx.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-2_ybi9wt.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="/img/logo.png" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.</p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-3_esffsb.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-5_d3axp1.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-4_dxfkjf.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-2_s4fspb.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-1_ajaeya.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made
+                            with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+
+    <!--add address form  modal -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{!-- using below form id we write the function in script.js --}}
+                    <form class="row g-3 needs-validation" id="checkout-form" method="post" novalidate>
+                        <div class="col-md-12">
+                            <label for="validationCustom02" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="validationCustom02" value="" name="name">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="validationCustom03" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="validationCustom03" name="address" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid Address.
+                            </div>
+                        </div>
+
+                        <div class="form-outline  col-md-6">
+                            <label class="form-label" for="form3Example1cg">Phone Number</label>
+                            <input type="phonenumber" id="phoneNumber" class="form-control form-control-lg"
+                                name="phoneNumber" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="validationCustom04" class="form-label">Country</label>
+                            <select class="form-select" id="validationCustom04" name="country" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>India</option>
+                                <option>S.Korea</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid city.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom04" class="form-label">City</label>
+                            <select class="form-select" id="validationCustom04" name="city" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Kochi</option>
+                                <option>Srinagar</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid city.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom04" class="form-label">State</label>
+                            <select class="form-select" id="validationCustom04" name="state" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Kerala</option>
+                                <option>Kashmir</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid state.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom05" class="form-label">Pincode</label>
+                            <input type="text" class="form-control" id="validationCustom05" name="pincode" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid Pincode.
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {{!-- coupon modal --}}
+    <div class="modal fade" id="addCouponModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apply Coupon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{!-- using below form id we write the function in script.js --}}
+                    {{!-- <form class="row g-3 needs-validation" id="checkout-form" method="post" novalidate> --}}
+                        <div class="col-md-12">
+                            <div class="discount__content">
+                                <h6>Discount codes</h6>
+                                <form id="coupon-form" method="post">
+                                    <input type="text" placeholder="Enter your coupon code" name="couponCode">
+                                    <button type="submit" class="site-btn">Apply</button>
+                                    <h6 id="coupon-condition"></h6>
+                                </form>
+                            </div>
+                        </div>
+
+                        {{!--
+                    </form> --}}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/jquery.countdown.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+<style>
+    .custom-btn {
+        width: 130px;
+        height: 40px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 25px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+            7px 7px 20px 0px rgba(0, 0, 0, .1),
+            4px 4px 5px 0px rgba(0, 0, 0, .1);
+        outline: none;
+    }
+
+    .btn-9 {
+
+        width: 130px;
+        height: 40px;
+        line-height: 42px;
+        padding: 0;
+        border: none;
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+
+    }
+
+    .btn-9:after {
+        position: absolute;
+        content: " ";
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.3s ease;
+    }
+
+    .btn-9:hover {
+        background: transparent;
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+        color: #fff;
+    }
+
+    .btn-9:hover:after {
+        -webkit-transform: scale(2) rotate(180deg);
+        transform: scale(2) rotate(180deg);
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+            inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    }
+</style>

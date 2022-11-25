@@ -1,0 +1,212 @@
+<div class="btn" style=""><button data-bs-toggle="modal" data-bs-target="#couponModal"
+    style=" background:rgb(0,172,238); margin-left: 16rem;" type="button" class="custom-btn btn-9" id="">Add
+    Coupon</button></div>
+
+{{!-- Add Coupon Modal --}}
+
+<div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="couponModalLabel">Add Coupon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{!-- using below form id we write the function in script.js --}}
+        <form class="row g-3 needs-validation" id="add-coupon-form" method="post" novalidate>
+          <div class="col-md-12">
+            <label for="validationCustom02" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Enter Coupon Code"
+              name="couponCode">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="validationCustom03" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom03" name="couponPercentage"
+              placeholder="Enter Coupon Offer in %" required>
+            <div class="invalid-feedback">
+              Please provide a valid Address.
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="validationCustom03" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom03" name="minPrice"
+              placeholder="Enter Minimum Price for this Coupon" required>
+            <div class="invalid-feedback">
+              Please provide a valid Address.
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="validationCustom03" class="form-label"></label>
+            <input type="text" class="form-control" id="validationCustom03" name="maxPrice"
+              placeholder="Enter Maximum Price for this Coupon" required>
+            <div class="invalid-feedback">
+              Please provide a valid Address.
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="start" class="form-label">Expiry Date</label>
+            <input type="date" id="start" name="expiryDate" placeholder="2022-11-01" min="2022-01-01" max="2023-12-31">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{{!--TABLE--}}
+
+<table class="table table-dark table-striped table-hover" style="margin-left: 17rem;
+    width: 81%;">
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Coupons</th>
+      <th scope="col">Offer %</th>
+      <th scope="col">Min: Price</th>
+      <th scope="col">Max: Price</th>
+      <th scope="col">Expiry Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each coupons}}
+    <tr>
+      <th scope="row">{{inc @index}}</th>
+      <td>{{this.couponCode}}</td>
+      <td>{{this.couponPercentage}}%</td>
+      <td>{{this.minPrice}}</td>
+      <td>{{this.maxPrice}}</td>
+      <td>{{this.expiryDate}}</td>
+      <td><button data-bs-toggle="modal" data-bs-target="#userModal"
+            style=" background:rgb(0,172,238); margin-left: -3rem;" type="button" class="custom-btn btn-9">View
+            Users</button></td>
+
+      <td><a onclick="deleteCoupon('{{this._id}}')"><button style=" background:rgb(255,27,0);" type="button"
+            class="custom-btn btn-9" id="{{this._id}}">Delete</button></a></td>
+
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<form method="get" action="">
+  <!-- userDetails form  modal -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Saved Addresses</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-check">
+
+            {{#each userAddresses}}
+
+
+            <div class="card" style="width: 18rem;">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1"> </label>
+              <div class="card-body">
+
+                <h5 class="card-title">{{this.address.name}}</h5>
+
+                <p class="card-text">{{this.address.address}} ,{{this.address.city}},
+                  <br> {{this.address.state}} , {{this.address.country}} ,
+                  <br> {{this.address.pincode}},<br>Ph: {{this.address.phoneNumber}}
+                </p>
+                {{!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> --}}
+              </div>
+            </div>
+
+            {{/each}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- modal end --}}
+</form>
+
+<style>
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+      7px 7px 20px 0px rgba(0, 0, 0, .1),
+      4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+  }
+
+  .btn-9 {
+
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+
+
+  }
+
+  .btn-9:after {
+    position: absolute;
+    content: " ";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s ease;
+  }
+
+  .btn-9:hover {
+    background: transparent;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+      -4px -4px 6px 0 rgba(116, 125, 136, .2),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    color: #fff;
+  }
+
+  .btn-9:hover:after {
+    -webkit-transform: scale(2) rotate(180deg);
+    transform: scale(2) rotate(180deg);
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+      -4px -4px 6px 0 rgba(116, 125, 136, .2),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, .5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  }
+</style>

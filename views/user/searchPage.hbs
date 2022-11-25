@@ -1,0 +1,262 @@
+<body>
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                        <span>Search</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Section Begin -->
+    {{!-- <section class="shop spad"> --}}
+        <div class="container" style="margin-top: 2rem;">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="row">
+
+                        {{#if response}}
+                        {{#each response}}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{this.image.[0]}}">
+                                    <div class="label new">New</div>
+                                    {{#if ../user}}
+                                    {{#if this.Stock}}
+                                    <ul class="product__hover">
+                                        <li><a href="/productDetails/{{this._id}}"><span
+                                                    class="arrow_expand"></span></a></li>
+
+                                        <li><a onclick="addToWishlist('{{this._id}}')"><span
+                                                    class="icon_heart_alt"></span></a></li>
+
+                                        <li><a onclick="addToCart('{{this._id}}')"><span
+                                                    class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                    {{else}}
+                                    <div class="label stockout">out of stock</div>
+                                    <ul class="product__hover">
+                                        <li><a href="/productDetails/{{this._id}}"><span
+                                                    class="arrow_expand"></span></a></li>
+
+                                        <li><a onclick="addToWishlist('{{this._id}}')"><span
+                                                    class="icon_heart_alt"></span></a></li>
+
+                                        <li><a onclick=""><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                    {{/if}}
+                                    {{else}}
+                                    <ul class="product__hover">
+                                        <li><a href="/productDetails/{{this._id}}"><span
+                                                    class="arrow_expand"></span></a></li>
+
+                                        <li><a href="/login"><span class="icon_heart_alt"></span></a></li>
+
+                                        <li><a href="/login"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+
+                                    {{/if}}
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">{{this.Name}}</a></h6>
+                                    {{!-- <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div> --}}
+                                    <div class="product__price">₹ {{this.OfferPrice}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <div class="container">
+                            <h2>Oops! Page not found.</h2>
+                            <h1>
+                                <ion-icon name="sad-outline"></ion-icon>
+                            </h1>
+                            <p>We can't find the result you're looking for.</p>
+                            <a href="/">Go back home</a>
+                        </div>
+                        {{/if}}
+
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!--
+    </section> --}}
+    <!-- Shop Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram"  style="margin-top: 2rem;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-1_llcvdn.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-5_oa1dfs.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-4_j1z12g.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-3_s1fk5z.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-6_ide4cx.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275495/Favily%20E%20Commerce/insta-2_ybi9wt.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.</p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-3_esffsb.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-5_d3axp1.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-4_dxfkjf.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-2_s4fspb.png" alt=""></a>
+                            <a href="#"><img src="https://res.cloudinary.com/dkq4lmkvj/image/upload/v1669275516/Favily%20E%20Commerce/payment-1_ajaeya.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+<style>
+    .icon_heart_alt:hover {
+        cursor: pointer;
+    }
+
+    .icon_bag_alt:hover {
+        cursor: pointer;
+    }
+</style>

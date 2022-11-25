@@ -1,0 +1,109 @@
+{{!-- <div class="container mt-5">
+  {{#if signupErr}}
+  <p class="h6">{{signupErr}}</p>
+  {{else}}
+  <p></p>
+  {{/if}}
+  <form action="/signup" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputname" class="form-label">Name</label>
+      <input type="name" class="form-control" id="exampleInputname" name="Name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" name="Email">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Signup</button>
+    <a href="/">login</a>
+  </form>
+</div> --}}
+
+
+<section class="vh-200 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px; margin-left: -14rem; margin-top: -19rem;}">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form onsubmit='return signupValidate()' action="/signup" method="POST">
+                <div class="invalid-feedback ms-5"></div>
+                <div class="form-outline mb-4">
+                  <input type="name" id="Name" class="form-control form-control-lg" name="Name" />
+                  <label class="form-label" for="form3Example1cg">Name</label>
+                </div>
+                <div class="invalid-feedback ms-5"></div>
+                {{#if emailChecker}}
+                {{emailChecker}}
+                {{/if}}
+                <div class="form-outline mb-4">
+                  <input type="email" id="Email" class="form-control form-control-lg" name="Email" />
+                  <label class="form-label" for="form3Example3cg">Email</label>
+                </div>
+                <div class="invalid-feedback ms-5"></div>
+                <div class="form-outline mb-4">
+                  <input type="password" id="Password" class="form-control form-control-lg" name="Password" />
+                  <label class="form-label" for="form3Example4cg">Password</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                </div>
+                <div class="invalid-feedback ms-5"></div>
+                <div class="form-outline mb-4">
+                  <input type="phonenumber" id="phoneNumber" class="form-control form-control-lg" name="phoneNumber" />
+                  <label class="form-label" for="form3Example1cg">Phone Number</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="referralcode" id="referralCode" class="form-control form-control-lg"
+                    name="referralCode" />
+                  <label class="form-label" for="form3Example1cg">Referral Code</label>
+                </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input" style="margin-left: -24rem;" type="checkbox" value=""
+                    id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                  </label>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Signup</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Js Plugins -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
+  <script src="/js/mixitup.min.js"></script>
+  <script src="/js/jquery.countdown.min.js"></script>
+  <script src="/js/jquery.slicknav.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.nicescroll.min.js"></script>
+  <script src="/js/main.js"></script>
+
+</section>
